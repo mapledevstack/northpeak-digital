@@ -36,6 +36,7 @@ const MobileMenu = () => {
         <div className="flex flex-col">
           {navLinks.map((link) => (
             <SheetClose
+              nativeButton={false}
               key={link.label}
               render={
                 <a
