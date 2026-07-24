@@ -10,9 +10,9 @@ const navLinks = [
 
 const Navbar = () => {
   return (
-    <header>
-      <nav className="sticky top-0 z-50 border-b border-sidebar-border bg-sidebar">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50">
+      <nav className="border-b border-sidebar-border bg-sidebar/50 backdrop-blur-sm">
+        <div className="mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <a
             href="#"
