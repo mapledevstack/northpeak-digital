@@ -3,7 +3,7 @@ import MobileMenu from "./MobileMenu"
 
 const navLinks = [
   { label: "Services", href: "#services" },
-  { label: "Results", href: "#testimonials" },
+  { label: "Testimonials", href: "#testimonials" },
   { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
 ]
@@ -13,7 +13,6 @@ const Navbar = () => {
     <header className="sticky top-0 z-50">
       <nav className="border-b border-sidebar-border bg-sidebar/50 backdrop-blur-sm">
         <div className="mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Logo */}
           <a
             href="#"
             aria-label="NorthPeak Digital home"
@@ -23,7 +22,6 @@ const Navbar = () => {
             <span>NorthPeak</span>
           </a>
 
-          {/* Desktop Navigation */}
           <div className="hidden h-full md:flex">
             {navLinks.map((navLink) => (
               <a
@@ -36,7 +34,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Navigation */}
           <div className="md:hidden">
             <MobileMenu />
           </div>
