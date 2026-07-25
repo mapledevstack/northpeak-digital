@@ -1,9 +1,9 @@
 import { motion } from "motion/react"
 import { LucideArrowRight } from "lucide-react"
 import { Button } from "../ui/button"
-import webImage1 from "@/assets/images/website1.png"
-import webImage2 from "@/assets/images/website2.png"
-import webImage3 from "@/assets/images/website3.png"
+import webImage1 from "@/assets/images/website1.webp"
+import webImage2 from "@/assets/images/website2.webp"
+import webImage3 from "@/assets/images/website3.webp"
 import {
   Carousel,
   CarouselContent,
