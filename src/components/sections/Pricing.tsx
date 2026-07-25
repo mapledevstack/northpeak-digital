@@ -2,60 +2,8 @@ import { motion } from "motion/react"
 import { Check } from "lucide-react"
 import { Button } from "../ui/button"
 import { Card, CardContent } from "../ui/card"
-
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-}
-
-const plans = [
-  {
-    name: "Starter",
-    price: "$499",
-    description: "Perfect for small businesses starting online.",
-    features: [
-      "Custom landing page",
-      "Responsive design",
-      "Basic SEO setup",
-      "Mobile optimization",
-    ],
-  },
-  {
-    name: "Professional",
-    price: "$999",
-    description: "For businesses ready to grow their presence.",
-    features: [
-      "Multi-page website",
-      "Advanced animations",
-      "SEO optimization",
-      "Performance improvements",
-      "Priority support",
-    ],
-    popular: true,
-  },
-  {
-    name: "Premium",
-    price: "$1999",
-    description: "Complete digital solutions for ambitious brands.",
-    features: [
-      "Custom web application",
-      "Advanced integrations",
-      "Brand strategy",
-      "Analytics setup",
-      "Dedicated support",
-    ],
-  },
-]
+import { fadeUp } from "@/lib/animation"
+import plans from "@/data/pricing"
 
 const Pricing = () => {
   return (

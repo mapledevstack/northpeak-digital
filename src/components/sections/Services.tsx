@@ -1,66 +1,7 @@
 import { motion } from "motion/react"
-import {
-  Palette,
-  Code2,
-  Search,
-  ShoppingCart,
-  Rocket,
-  ChartNoAxesCombined,
-} from "lucide-react"
 import { Card, CardContent } from "../ui/card"
-
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 2,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-}
-
-const services = [
-  {
-    title: "UI/UX Design",
-    description:
-      "Clean, intuitive interfaces designed to create memorable user experiences.",
-    icon: Palette,
-  },
-  {
-    title: "Web Development",
-    description:
-      "Fast, responsive websites built with modern technologies and best practices.",
-    icon: Code2,
-  },
-  {
-    title: "SEO Optimization",
-    description:
-      "Improve your visibility and help more customers discover your business.",
-    icon: Search,
-  },
-  {
-    title: "E-commerce Solutions",
-    description:
-      "Online stores designed to turn visitors into loyal customers.",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Brand Identity",
-    description: "Build a consistent and recognizable brand that stands apart.",
-    icon: Rocket,
-  },
-  {
-    title: "Growth Strategy",
-    description:
-      "Data-driven improvements focused on long-term business growth.",
-    icon: ChartNoAxesCombined,
-  },
-]
+import { fadeUp } from "@/lib/animation"
+import services from "@/data/services"
 
 const Services = () => {
   return (

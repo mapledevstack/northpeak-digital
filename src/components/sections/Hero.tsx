@@ -11,21 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel"
-
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-}
+import { fadeUp } from "@/lib/animation"
 
 const Hero = () => {
   const images = [webImage1, webImage2, webImage3]
@@ -74,15 +60,21 @@ const Hero = () => {
         <motion.div variants={fadeUp} className="mt-10">
           <Button
             size="lg"
-            className="h-14 gap-2 px-10 text-2xl font-bold shadow-lg transition-all hover:shadow-xl"
+            className="group h-14 gap-2 px-10 text-2xl font-bold shadow-lg transition-all hover:shadow-2xl"
           >
             Get Started
-            <LucideArrowRight className="size-7" />
+            <LucideArrowRight className="size-7 transition-transform group-hover:scale-110" />
           </Button>
         </motion.div>
       </motion.div>
 
-      <motion.div variants={fadeUp} className="relative mx-auto mt-16 w-5/6">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+        className="relative mx-auto mt-16 w-5/6"
+      >
         <Carousel
           opts={{
             loop: true,
@@ -90,8 +82,8 @@ const Hero = () => {
         >
           <CarouselContent>
             {images.map((image, index) => (
-              <CarouselItem>
-                <img key={index} src={image} alt="Website" />
+              <CarouselItem key={index}>
+                <img src={image} alt="Website" />
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -1,42 +1,8 @@
 import { motion } from "motion/react"
 import { Quote } from "lucide-react"
 import { Card, CardContent } from "../ui/card"
-
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-}
-
-const testimonials = [
-  {
-    name: "Sarah Mitchell",
-    role: "Founder, Nova Studio",
-    quote:
-      "They transformed our outdated website into a modern experience that our customers actually enjoy using.",
-  },
-  {
-    name: "Daniel Carter",
-    role: "Marketing Director, Apex Labs",
-    quote:
-      "The attention to detail was incredible. Our new website feels faster, cleaner, and much more professional.",
-  },
-  {
-    name: "Emily Johnson",
-    role: "CEO, Bloom Creative",
-    quote:
-      "A fantastic team that understood our vision and delivered a website that truly represents our brand.",
-  },
-]
+import { fadeUp } from "@/lib/animation"
+import testimonials from "@/data/testimonials"
 
 const Testimonials = () => {
   return (
