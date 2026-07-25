@@ -1,10 +1,16 @@
 import { motion } from "motion/react"
-import { ChevronLeft, ChevronRight, LucideArrowRightCircle } from "lucide-react"
+import { LucideArrowRight } from "lucide-react"
 import { Button } from "../ui/button"
 import webImage1 from "@/assets/images/website1.png"
 import webImage2 from "@/assets/images/website2.png"
 import webImage3 from "@/assets/images/website3.png"
-import { useState } from "react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel"
 
 const fadeUp = {
   hidden: {
@@ -23,16 +29,6 @@ const fadeUp = {
 
 const Hero = () => {
   const images = [webImage1, webImage2, webImage3]
-
-  const [currentImage, setCurrentImage] = useState(0)
-
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % images.length)
-  }
-
-  const prevImage = () => {
-    setCurrentImage((prev) => (prev - 1 + images.length) % images.length)
-  }
 
   return (
     <section className="py-20">
@@ -81,34 +77,27 @@ const Hero = () => {
             className="h-14 gap-2 px-10 text-2xl font-bold shadow-lg transition-all hover:shadow-xl"
           >
             Get Started
-            <LucideArrowRightCircle className="size-7" />
+            <LucideArrowRight className="size-7" />
           </Button>
         </motion.div>
       </motion.div>
 
       <motion.div variants={fadeUp} className="relative mx-auto mt-16 w-5/6">
-        <motion.img
-          key={images[currentImage]}
-          src={images[currentImage]}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="w-full rounded-xl shadow-2xl"
-        />
-
-        <button
-          onClick={prevImage}
-          className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-lg backdrop-blur hover:bg-background"
+        <Carousel
+          opts={{
+            loop: true,
+          }}
         >
-          <ChevronLeft className="size-6" />
-        </button>
-
-        <button
-          onClick={nextImage}
-          className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-lg backdrop-blur hover:bg-background"
-        >
-          <ChevronRight className="size-6" />
-        </button>
+          <CarouselContent>
+            {images.map((image, index) => (
+              <CarouselItem>
+                <img key={index} src={image} alt="Website" />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </motion.div>
     </section>
   )
