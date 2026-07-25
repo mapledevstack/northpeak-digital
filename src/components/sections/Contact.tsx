@@ -4,23 +4,26 @@ import { Button } from "../ui/button"
 import { Card, CardContent } from "../ui/card"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
-
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-}
+import { fadeUp } from "@/lib/animation"
+import { contactSchema, type ContactForm } from "@/schemas/contact"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 const Contact = () => {
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+    mode: "onBlur",
+  })
+
+  const onSubmit = (values: ContactForm) => {
+    console.log(values)
+  }
+
   return (
     <section id="contact" className="relative overflow-hidden py-20">
       <motion.div
@@ -68,26 +71,71 @@ const Contact = () => {
         <motion.div variants={fadeUp}>
           <Card className="border-border/50 bg-card/50 shadow-xl">
             <CardContent className="p-8">
-              <form className="space-y-5">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-5"
+              >
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Name</label>
-                  <Input placeholder="Your name" />
+                  <label htmlFor="name" className="text-sm font-medium">
+                    Name
+                  </label>
+
+                  <Input
+                    id="name"
+                    placeholder="Your name"
+                    {...form.register("name")}
+                  />
+
+                  {form.formState.errors.name && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.name.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Email</label>
-                  <Input type="email" placeholder="you@example.com" />
-                </div>
+                  <label htmlFor="email" className="text-sm font-medium">
+                    Email
+                  </label>
 
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    {...form.register("email")}
+                  />
+
+                  {form.formState.errors.email && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.email.message}
+                    </p>
+                  )}
+                </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Message</label>
+                  <label htmlFor="message" className="text-sm font-medium">
+                    Message
+                  </label>
+
                   <Textarea
+                    id="message"
                     placeholder="Tell us about your project..."
                     className="min-h-32"
+                    {...form.register("message")}
                   />
+
+                  {form.formState.errors.message && (
+                    <p className="text-sm text-destructive">
+                      {form.formState.errors.message.message}
+                    </p>
+                  )}
                 </div>
 
-                <Button size="lg" className="w-full">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full"
+                  disabled={form.formState.isSubmitting}
+                >
                   Send Message
                 </Button>
               </form>
